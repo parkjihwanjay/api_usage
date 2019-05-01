@@ -1,0 +1,105 @@
+.bar_ind{
+    width:100%;
+    height: 170px;
+    border-bottom: 2px solid black;
+    display:flex;
+    justify-content: center;
+
+}
+
+.text_img{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_in
+{
+    width:100%;
+    height:100%;
+}
+
+.read_text{
+    font-size: 3em;
+}
+.read_img{
+    width:20%;
+}
+
+
+.bigbox{
+    width:60%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top:10px;
+    border-bottom: 2px solid black;
+    padding-bottom: 20px;
+}
+.commentbox{
+    width:60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.lastbox{
+    width: 60%;
+    margin-top: 80px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.small{
+    width:20%;
+}
+
+h2{
+    font-size: 3em;
+}
+
+h5{
+    font-size: 1.5em;
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+}
+
+.ul_edit{
+    padding-left: 15px;
+}
+
+.a_edit{
+    padding-left: 24px;
+    font-size: 9px;
+    width:5%;
+    height: 5%;
+}
+
+.img_in_a
+{
+    width: 2%;
+    height: 2%;
+}
+
+.img_in_a2{
+    width:52%;
+    height: 52%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form_flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+

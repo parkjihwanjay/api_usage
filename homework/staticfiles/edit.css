@@ -1,0 +1,24 @@
+.name{
+    width: 14%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bigbox{
+    width:70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formbox{
+    width:50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button{
+    width:100%;
+    height: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 5em;
+}

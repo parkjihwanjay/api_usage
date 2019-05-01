@@ -1,0 +1,38 @@
+*{
+    margin : 0px;
+    padding : 0px;
+}
+
+.big_box{
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
+
+.bar{
+    width:100%;
+    height: 200px;
+    background-color: blue;
+    display:flex;
+    align-content: space-between;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.bar_name{
+    width:30%;
+    margin-left : auto;
+    margin-right : auto;
+}
+.site_name{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 24%;
+}
+
+.list_name{
+    width:200px;
+}

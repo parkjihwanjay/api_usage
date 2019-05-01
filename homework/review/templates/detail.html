@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'detail.css ' %}">
+    <title>Document</title>
+</head>
+<body>
+{% block content %}
+    <div class="bar_ind">
+        <div class="text_img">
+            <div class="read_img"><img class="img_in" src="https://image.flaticon.com/icons/svg/182/182321.svg"></div>
+            <div class="read_text">리뷰 읽기</div>
+            <div class="read_img"><img class="img_in" src="https://image.flaticon.com/icons/svg/182/182321.svg"></div>
+        </div>
+    </div>
+    <div class="bigbox">
+        <h2>제목 : {{post.title}}</h2>
+        <h5>내용 : {{post.contents}}</h5>
+        <h5>가격 : {{post.price}}원</h5>
+        <h5>평점 : {{post.score}}</h5>
+        
+    </div>
+    <div class="commentbox">
+        <ul class="ul_edit">
+            {% for comment in post.comments.all %}
+            <li>{{comment.댓글}}<a class="a_edit" href="{% url 'delete_comment' post.pk comment.pk %}"><img class="img_in_a" src="https://image.flaticon.com/icons/svg/63/63260.svg"></a></li>
+            {% endfor %}
+        </ul>
+        <form class="form_flex" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit"/>
+        </form>
+    </div>
+    <div class="lastbox">
+            <div class="small"><a href="{% url 'home' %}"><button class ="button" type = "submit">글 목록으로 돌아가기</a></div>
+            
+            <div class="small"><a href="{% url 'edit' post.pk %}"><button class ="button" type = "submit">수정하기</a></div>
+            <div class="small"><a href="{% url 'delete' post.pk %}"><img class="img_in_a2" src="https://image.flaticon.com/icons/svg/63/63260.svg"></a></div>
+        </div>
+{% endblock %}
+</body>
+</html>
