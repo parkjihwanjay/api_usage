@@ -16,21 +16,30 @@
         <div class="bar_img"><img src="https://image.flaticon.com/icons/svg/148/148926.svg"></div>
     </div>
 {% block content %}
-    <div class="big_box">
-        
-        <div class="list_name">
-             <h2>리뷰 목록</h2>
+    <div class="body_box">
+        <div class="adver_box1">
+            <img class="adver_img1" src="./static/adver_1.PNG"/>
         </div>
-        <div class="list">
-            {% for post in posts %}
-                <li>
-                    <a href="{% url 'detail' post.pk %}">{{post.title}}</a>
-                    <br>
-                </li>
-            {% endfor %}
+        <div class="big_box">
+            
+            <div class="list_name">
+                <h2>리뷰 목록</h2>
+            </div>
+            <div class="list">
+                <div class="list_middle_box">
+                    {% for post in posts %}
+                        <div class="list_box">
+                            <a href="{% url 'detail' post.pk %}"><img class="list_img" src="{{post.img.url}}"/>{{post.title}}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="write">
+                <a href="{% url 'new' %}"><button class ="button" type = "submit">글쓰기</button></a>
+            </div>
         </div>
-        <div class="write">
-            <a href="{% url 'new' %}"><button class ="button" type = "submit">글쓰기</button></a>
+        <div class="adver_box2">
+            <img class="adver_img2" src="./static/adver_4.PNG"/>
         </div>
     </div>
 {% endblock %}

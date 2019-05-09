@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html lang="en">
 {% load static %}
 {% load staticfiles %}
 
@@ -20,12 +20,20 @@
             <div class="read_img"><img class="img_in" src="https://image.flaticon.com/icons/svg/182/182321.svg"></div>
         </div>
     </div>
-    <div class="bigbox">
-        <h2>제목 : {{post.title}}</h2>
-        <h5>내용 : {{post.contents}}</h5>
-        <h5>가격 : {{post.price}}원</h5>
-        <h5>평점 : {{post.score}}</h5>
-        
+    <div class="detail_body_box">
+        <div class="adver_box3">
+            <img class="adver_img3" src="./static/adver_3.PNG"/>
+        </div>
+        <div class="bigbox">
+            <h2>제목 : {{post.title}}</h2>
+            <h5>내용 : {{post.contents}}</h5>
+            <h5>가격 : {{post.price}}원</h5>
+            <h5>평점 : {{post.score}}</h5>
+            <img class="file_img" src="{{post.img.url}}"/>
+        </div>
+        <div class="adver_box4">
+            <img class="adver_img4" src="./static/adver_4.PNG"/>
+        </div>
     </div>
     <div class="commentbox">
         <ul class="ul_edit">
@@ -34,14 +42,18 @@
             {% endfor %}
         </ul>
         <form class="form_flex" method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit"/>
+            {% for field in form %}
+                {% csrf_token %}
+                <div class="comment">
+                    {{field.label}}
+                    {{field}}
+                </div>
+                <input type="submit"/>
+            {% endfor %}
         </form>
     </div>
     <div class="lastbox">
             <div class="small"><a href="{% url 'home' %}"><button class ="button" type = "submit">글 목록으로 돌아가기</a></div>
-            
             <div class="small"><a href="{% url 'edit' post.pk %}"><button class ="button" type = "submit">수정하기</a></div>
             <div class="small"><a href="{% url 'delete' post.pk %}"><img class="img_in_a2" src="https://image.flaticon.com/icons/svg/63/63260.svg"></a></div>
         </div>

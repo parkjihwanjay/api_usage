@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="{% static 'new.css' %}">
-
+        <link rel="stylesheet" type="text/css" href="{% static 'detail.css' %}">
         <title>Document</title>
     </head>
     <body>
@@ -18,9 +18,15 @@
         </div>
         <div class="bigbox">
             <div class="formbox">
-                <form method="POST">{% csrf_token %}
-                    {{form.as_p}}
-                    <button class ="button" type = "submit">제출!</button>
+                <form method="POST" enctype='multipart/form-data'>
+                {%for field in form %}
+                    {% csrf_token %}
+                    <div class='new_form'>
+                        {{field.label}}
+                        {{field}}
+                    </div>
+                {% endfor %}
+                <button class ="button" type = "submit">제출!</button>
                 </form>
             </div>
         </div>

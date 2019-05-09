@@ -2,6 +2,7 @@
     width: 7%;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 .bigbox{
@@ -21,4 +22,28 @@
     height: 100%;
     font-family: 'Courier New', Courier, monospace;
     font-size: 5em;
+}
+
+.new_form{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.price_form{
+    width: 51px;
+}
+
+input{
+    margin-left: 10px;
+}
+.contents_form{
+    margin-left: 10px;
+}
+
+.title_form{
+    margin-left: 10px;
+}
+
+.score_form{
+    margin-left: 10px;
 }
