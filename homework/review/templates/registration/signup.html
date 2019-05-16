@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="signup_bigbox">
+    <div class="signup_title"><h2>회원가입</h2></div>
+    <form method="POST">
+        {% csrf_token %}
+            {% if error %}
+                {{ error }}
+            {% endif %}
+        <div class="singup_form">
+            <div>
+                {{form.username.label}}
+            </div>
+            <div class="username_form">
+                {{form.username}}
+            </div>
+        </div>
+
+        <div class="singup_form">
+            <div>
+                {{form.last_name.label}}
+            </div>
+            <div class="username_form">
+                {{form.last_name}}
+            </div>
+        </div>
+        <div class="singup_form">
+            <div>
+                {{form.first_name.label}}
+            </div>
+            <div class="username_form">
+                {{form.first_name}}
+            </div>
+        </div>
+        
+
+        <div class="singup_form">
+            <div>
+                {{form.password.label}}
+            </div>
+            <div class="_form">
+                {{form.password}}
+            </div>
+        </div>
+        <div class="singup_form">
+            <div>
+                {{form.password_check.label}}
+            </div>
+            <div class="_form">
+                {{form.password_check}}
+            </div>
+        </div>
+        <div class="singup_form">
+            <div>
+                {{form.email.label}}
+            </div>
+            <div class="_form">
+                {{form.email}}
+            </div>
+        </div>
+        <div class="singup_form"> 
+            <div>
+                {{form.age.label}}
+            </div>
+            <div class="age_form">
+                {{form.age}}
+            </div>
+        </div>
+      
+    <input class="signup_input" type="submit" value="회원가입하기">
+    </form>
+</div>
+    {% endblock %}

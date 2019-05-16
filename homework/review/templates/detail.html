@@ -54,8 +54,10 @@
     </div>
     <div class="lastbox">
             <div class="small"><a href="{% url 'home' %}"><button class ="button" type = "submit">글 목록으로 돌아가기</a></div>
-            <div class="small"><a href="{% url 'edit' post.pk %}"><button class ="button" type = "submit">수정하기</a></div>
-            <div class="small"><a href="{% url 'delete' post.pk %}"><img class="img_in_a2" src="https://image.flaticon.com/icons/svg/63/63260.svg"></a></div>
+            {% if user.is_authenticated and post.author == user.username %}
+                <div class="small"><a href="{% url 'edit' post.pk %}"><button class ="button" type = "submit">수정하기</a></div>
+                <div class="small"><a href="{% url 'delete' post.pk %}"><img class="img_in_a2" src="https://image.flaticon.com/icons/svg/63/63260.svg"></a></div>
+            {% endif %}
         </div>
 {% endblock %}
 </body>

@@ -1,0 +1,66 @@
+.signup_bigbox{
+    width: 26%;
+    margin: 0 auto;
+    margin-top: 80px;
+}
+.signup_title{
+    text-align: center;
+}
+
+.singup_form{
+    margin-top: 20px;
+}
+
+.password_form{
+    width:90%;
+    border: 1px solid black;
+    border-radius: 10%;
+}
+
+
+._form input{
+    border:1px solid black;
+    width:100%;
+    border-radius: 10%;
+}
+.username_form{
+    width:176px;
+}
+.age_form{
+    width:57px;
+}
+.age_form input{
+    width:100%;
+    border:1px solid black;
+    border-radius: 10%;
+}
+.username_form textarea{
+    width:100%;
+    border:1px solid black;
+    border-radius: 10%;
+}
+
+._form textarea{
+    border:1px solid black;
+    width: 100%;
+    border-radius: 10%;
+}
+
+.name_form{
+    width: 105px;
+}
+
+.name_form input{
+    width: 100%;
+    border:1px solid black;
+    border-radius: 10%;
+}
+
+.signup_input{
+    margin-top: 100px;
+    margin-left : 100px;
+    height: 50px;
+    width: 150px;
+    background-color: orange;
+    color : white;
+}

@@ -1,12 +1,25 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser, User
+from django.forms import ValidationError
 # Create your models here.
+
+# class Username(models.Model):
+#     username = models.CharField(maax_length=20)
+#     def __str__(self):
+#         return self.username
+
+class MyUser(AbstractUser):
+    password_check = models.CharField(max_length=20)
+    age = models.CharField(max_length=20)
+    def __str__(self):
+        return self.username
+
 class Post(models.Model):
     img = models.FileField(null=True)
     title = models.CharField(max_length=200)
     contents = models.TextField()
     price = models.SmallIntegerField()
-    
+    author = models.CharField(max_length=50, default = "")
     choices_in_score=(
         ('1점', '1'),
         ('2점', '2'),
