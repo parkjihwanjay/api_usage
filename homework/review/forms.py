@@ -1,6 +1,19 @@
 from django import forms
-from .models import Post, Comment, MyUser
+from .models import Post, Comment, MyUser, Find
 from django.contrib.auth.models import User
+
+class searchForm(forms.ModelForm):
+    class Meta:
+        model = Find
+        fields = ['search']
+
+        labels = {
+            'search' : '검색',
+        }
+
+        widgets = {
+            'search' : forms.Textarea(attrs={'class' : 'form-control', 'rows' : '1', 'placeholder' : "검색.."}),
+        }
 
 class reset_passwordForm(forms.ModelForm):
     class Meta:

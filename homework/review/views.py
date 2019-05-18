@@ -2,11 +2,35 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.contrib.auth.password_validation import validate_password
 from django.shortcuts import render, redirect
-from .forms import PostForm, CommentForm, UserForm, find_userForm, find_passworForm, reset_passwordForm
-from .models import Post, Comment, MyUser
+from .forms import PostForm, CommentForm, UserForm, find_userForm, find_passworForm, reset_passwordForm, searchForm
+from .models import Post, Comment, MyUser, Find
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from random import *
+import random
+import string
+import requests
+from bs4 import BeautifulSoup
 # Create your views here.
+
+def find_naver(request):
+    if request.method == 'POST':
+        word = request.POST['search']
+        URL = 'https://search.naver.com/search.naver?where=news&sm=tab_jum&query='
+        query = word
+
+        fullURL = URL + query
+        data = requests.get(fullURL).text
+        soup = BeautifulSoup(data, 'html.parser')
+        news_titles = soup.find_all(class_='_sp_each_title')
+        title_list=[]
+        for title in news_titles:
+            title_list.append({'url' : title.get('href'), 'title' : title.get('title')})
+
+        return render(request, 'find.html', {'title_list' : title_list})
+    else:
+        form = searchForm()
+        return render(request, 'find.html', {'form' : form, 'message' : '정상적'})
 
 def find_username(request):
     if request.method == 'POST':
@@ -32,7 +56,15 @@ def find_password(request):
         input_email = request.POST['email']
         for myuser in MyUser.objects.all():
             if input_username == myuser.username and input_firstname == myuser.first_name and input_lastname == myuser.last_name and input_email == myuser.email:
-                return redirect('reset_password', myuser.pk)
+                user = myuser
+                letters = string.ascii_lowercase
+                temp_pass=''
+                for i in range(10):
+                    temp_pass.join(random.choice(letters))
+                user.set_password(temp_pass)
+                user.save()
+                message = '임시 비번입니다. 이걸로 로그인하세여'
+                return render(request, 'registration/find_password.html', {'message' : message, 'temp_pass':temp_pass})
         error = '일치하는 비번이 없습니다 ㅜ.ㅜ'
         return render(request, 'registration/find_password.html', {'error': error})
     else:

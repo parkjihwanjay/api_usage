@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'signup.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'find.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <title>리뷰 사이트</title>
 </head>
 <body>
@@ -26,6 +28,8 @@
                 <div class="navitem"><a href="{% url 'signup' %}">회원가입</div>
                 <div class="navitem" ><a href="{% url 'login' %}">로그인</a></div>
                 <div class="navitem" ><a href="{% url 'find_username' %}">아이디 찾기</a></div>
+                <div class="navitem" ><a href="{% url 'find_password' %}">비밀번호 찾기</a></div>
+                <div class="navitem"><a href="{% url 'find' %}">검색</a></div>
             {% endif %}
         </div>
         {% block content %}

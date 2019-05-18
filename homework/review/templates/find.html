@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    {% comment %} {% if form %} {% endcomment %}
+    {% if form %}  
+        <h2 class= 'naver_search'>네이버 검색</h2>
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="form-group center-block">
+                {% for field in form%}
+                    {{field}}
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-default center-block">검색</button>
+        </form>
+    {% else %}
+        <h2 class= 'naver_search'>검색 결과</h2>
+        {% if title_list %}
+        <div class="search_result center-block">
+            <ul>
+                {% for title in title_list %}
+                    <li class="result_title"><a href="{{title.url}}">{{title.title}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% else %}
+            검색 결과가 없습니다
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% comment %} {% else %}
+    {% for title in title_list %}
+        {{title}}
+        <br>
+    {% endfor %}
+
+{% endif %} {% endcomment %}
