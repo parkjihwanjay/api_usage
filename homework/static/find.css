@@ -6,12 +6,13 @@
     width: 70%;
 }
 
-.search_result{
-    width: 70%;
-    font-size: 0.7em;
-}
+
 
 .result_title{
     margin-top:20px;
 }
 
+.league_box{
+    display: flex;
+    flex-direction: row;
+}

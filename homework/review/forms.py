@@ -18,14 +18,16 @@ class searchForm(forms.ModelForm):
 class reset_passwordForm(forms.ModelForm):
     class Meta:
         model = MyUser
-        fields = ['password', 'password_check']
+        fields = ['password_origin', 'password', 'password_check']
 
-        labels = {  
+        labels = { 
+            'password_origin' : '기존 비밀번호',
             'password' : '새 비밀번호',
             'password_check' : '새 비밀번호 확인',
         }
 
         widgets={
+            'password_origin' : forms.PasswordInput(attrs={'class':'password_form', 'rows' : '1'}),
             'password' : forms.PasswordInput(attrs={'class':'password_form', 'rows' : '1'}),
             'password_check' : forms.PasswordInput(),
         }

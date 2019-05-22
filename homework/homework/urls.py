@@ -31,4 +31,5 @@ urlpatterns = [
     path('reset_password/<int:myuser_pk>/', views.reset_password, name="reset_password"),
     path('change_password/<int:myuser_pk>/', views.reset_password, name="change_password"),
     path('search/', views.find_naver, name = "find"),
+    path('lol_find/', views.lol_find, name = "lol_find"),
 ]

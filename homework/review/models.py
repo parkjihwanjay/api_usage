@@ -15,6 +15,7 @@ class Find(models.Model):
         return self.search
 
 class MyUser(AbstractUser):
+    password_origin = models.CharField(max_length=20, default='')
     password_check = models.CharField(max_length=20)
     age = models.CharField(max_length=20)
     def __str__(self):

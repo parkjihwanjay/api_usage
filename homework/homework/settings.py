@@ -142,3 +142,6 @@ AWS_S3_REGION_NAME = "ap-northeast-2"
 
 AUTH_USER_MODEL = 'review.MyUser'
 
+
+
+

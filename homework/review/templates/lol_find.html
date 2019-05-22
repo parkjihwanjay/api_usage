@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    {% comment %} {% if form %} {% endcomment %}
+    {% if form %}  
+        <h2 class= 'naver_search'>롤 아이디 검색</h2>
+        <form method="POST" enctype='multipart/form-data'>
+            {% csrf_token %}
+            <div class="form-group center-block">
+                {% for field in form%}
+                    {{field}}
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-default center-block">검색</button>
+        </form>
+    {% else %}
+        <h2 class= 'naver_search'>검색 결과</h2>
+        {% if profile %}
+        <div class="search_result center-block">
+            <ul>
+                <div class="profile">
+                닉네임 : {{profile.name}}
+                <p>
+                레벨 : {{profile.level}}
+                <p>
+                {% if profile.level > 100 %}
+                    중독이십니다..
+                {% elif profile.level < 100 and profile.level > 50 %}
+                    준수하시군요.. 
+                {% else %}
+                    초보시군요..  
+                {% endif %}
+                </div>
+                <p>
+                <div class="league_box">
+                    {% for league_infromation in league_info %}
+                        <div class="league_info">
+                            큐타입 :
+                            {% if league_infromation.queueType == 'RANKED_SOLO_5x5'%}
+                                솔로랭크
+                            {% elif league_infromation.queueType == 'RANKED_FLEX_SR'%}
+                                자유랭크
+                            {% endif%} 
+                            <p>
+                            {% if league_infromation.tier == 'BRONZE'%}
+                                <img class="tier_img" src="https://opgg-static.akamaized.net/images/medals/bronze_3.png"/>
+                            {% elif league_infromation.tier == 'SILVER' %}
+                                <img class="tier_img" src="https://opgg-static.akamaized.net/images/medals/silver_4.png"/>
+                            {% elif league_infromation.tier == 'GOLD' %}
+                                <img class="tier_img" src="https://opgg-static.akamaized.net/images/medals/gold_4.png"/>
+                            {% endif %}
+                            <p>
+                            티어 : {{league_infromation.tier}} {{league_infromation.rank}}
+                            <p>
+                            포인트 : {{league_infromation.leaguePoints}}pt
+                            <p >
+                            승리 : {{league_infromation.wins}}승
+                            <p>
+                            패배 : {{league_infromation.losses}}패
+                            <p>
+                            <p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="highest">
+                가장 높은 챔피언 레벨 : {{championLevel}}
+                <p>
+                가장 높은 챔피언 숙련도 : {{championPoints}}
+                <p>
+                </div>
+            
+                {% comment %} {% for title in title_list %}
+                    <li class="result_title"><a href="{{title.url}}">{{title.title}}</a></li>
+                {% endfor %} {% endcomment %}
+            </ul>
+        </div>
+        {% else %}
+            검색 결과가 없습니다
+        {% endif %}
+    {% endif %}
+{% endblock %}
+{% comment %} {% else %}
+    {% for title in title_list %}
+        {{title}}
+        <br>
+    {% endfor %}
+
+{% endif %} {% endcomment %}

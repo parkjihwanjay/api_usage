@@ -12,6 +12,7 @@ boto3 = "*"
 bs4 = "*"
 requests = "*"
 selenium = "*"
+xmltodict = "*"
 
 [requires]
 python_version = "3.7"
