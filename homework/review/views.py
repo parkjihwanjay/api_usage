@@ -53,14 +53,12 @@ def lol_find(request):
         league = f'https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/' + id + '?api_key=' + api_key
         league_info = requests.get(league).json()
 
-        # champions = f'https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + id + '?api_key=RGAPI-d9d4320c-94e2-49e2-a834-6cddbff83f6e'
-        # champions_info = requests.get(champions).json()
+       
 
         mastery = f'https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/' + id +'?api_key=' + api_key
         mastery_info = requests.get(mastery).json()
 
-        # for champions_information in champions_info:
-        #     name = champions_information['']
+        
         temp_level = 0
         temp_point = 0
 
@@ -71,10 +69,7 @@ def lol_find(request):
 
             if mastery_information['championPoints'] >= temp_point:
                 temp_point = int(mastery_information['championPoints'])
-        # for mastery_information in mastery_info:
-            
-            
-        
+
         return render(request, 'lol_find.html', {'profile' : profile, 'league_info' : league_info, 'id' : id, 'championLevel' : temp_level, 'championPoints' : temp_point})
     else:
         form = searchForm()

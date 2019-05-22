@@ -69,9 +69,7 @@
                 <p>
                 </div>
             
-                {% comment %} {% for title in title_list %}
-                    <li class="result_title"><a href="{{title.url}}">{{title.title}}</a></li>
-                {% endfor %} {% endcomment %}
+                
             </ul>
         </div>
         {% else %}
@@ -79,10 +77,3 @@
         {% endif %}
     {% endif %}
 {% endblock %}
-{% comment %} {% else %}
-    {% for title in title_list %}
-        {{title}}
-        <br>
-    {% endfor %}
-
-{% endif %} {% endcomment %}
