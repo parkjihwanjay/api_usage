@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+      <div class="title">
+        오늘의 할 일
+        <span>
+          <i id="plus" class="fas fa-plus"></i>
+          <i id="delete_all" class="far fa-trash-alt icon"></i>
+        </span>
+      </div>
+      <form method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{form.text}}
+      </form>
+
+      <div class="list">
+      {% for todo in todos %}
+      
+        <div>
+          - {{todo.text}}
+          <span>
+            <a href="{% url 'todo_delete' todo.pk %}"><i class="far fa-trash-alt icon"></i></a>
+          </span>
+        </div>
+      
+      {% endfor%}
+      </div>
+    </div>
+      
+        {% comment %} <div>
+          - 멋쟁이사자처럼 교안 짜기
+          <span>
+            <i class="far fa-trash-alt icon"></i>
+          </span>
+        </div>
+        <div>
+          - 기억심리학 과제하기
+          <span>
+            <i class="far fa-trash-alt icon"></i>
+          </span>
+        </div>
+      </div> {% endcomment %}
+    
+  
+    <script>
+      // + 버튼 클릭 시, input fade 토글
+        $('#plus').click(function(){
+          $("#input").fadeToggle();
+           
+        })
+  
+        $('#plus').click(function(){
+           $("#input").on();
+        })
+  
+        $(".list").on('click', 'div span', function(){
+          $(this).parent().fadeOut(500);
+        })
+
+        function toggle(){
+           $(this).toggleClass("complete");
+        }
+  
+        $(".list").on('click', 'div', toggle)
+
+        $("#delete_all").click(function(){          //아직 model에는 영향이 안감! -> 조치 필요
+          $('.complete').fadeOut(500);
+        })
+        
+        $("#input").setAttribute('method', 'Post')
+
+        $("#input").keydown(function(key){
+          if(key.keyCode === 13){
+            let text = $("input").val()
+            let ht = `<div>-${text}<span>
+            <i class="far fa-trash-alt icon"></i>
+          </span></div>`
+            $(".list").append(ht)
+            input.value=''
+            window.location.href = ''
+          }
+        })
+  
+  
+        
+
+        
+        
+      // trash icon 클릭 시, 500ms 간 fadeOut 후 사라짐
+  
+  
+      // 작성된 리스트 누르면 .complete라는 클래스 토글
+  
+  
+      // 입력 후 엔터 입력 시, 새로운 리스트 생성
+  
+  
+      // 상단의 trash 버튼 클릭 시, 완료된 리스트 모두 삭제
+  
+      
+    </script>
+{% endblock %}
+
+
+
+

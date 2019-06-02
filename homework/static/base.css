@@ -31,3 +31,14 @@ a:visited {
 }
 
 
+.ally_box{
+  background-color: gray;
+}
+
+.enemy_box{
+  background-color: pink;
+}
+
+.team_box{
+  display: flex;
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id= 'title1'>제목입니다</h1>
+    <script>
+        let random1
+        let random2
+        let random3
+
+        function getRandombackgroundColor(){
+            random1 = getRandomNumber()
+            random2 = getRandomNumber()
+            random3 = getRandomNumber()
+            return "rgb(" + random1 + ',' + random2 + ',' + random3 +")"
+        }
+
+        function getRandomcolor(){
+            random1 = getRandomNumber()
+            random2 = getRandomNumber()
+            random3 = getRandomNumber()
+            return "rgb(" + random1 + ',' + random2 + ',' + random3 +")"
+        }
+
+        function getRandomNumber(){
+            return Math.floor(Math.random()*255)
+        }
+
+        let body = document.getElementsByTagName('body')
+        let title1 = document.getElementById('title1')
+        setInterval(function(){
+            title1.style.color = getRandomcolor()
+            body[0].style.backgroundColor = getRandombackgroundColor()
+        }, 1000)
+
+
+    </script>
+</body>
+</html>

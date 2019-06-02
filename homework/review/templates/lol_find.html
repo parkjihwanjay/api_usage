@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    
+   
     {% comment %} {% if form %} {% endcomment %}
     {% if form %}  
         <h2 class= 'naver_search'>롤 아이디 검색</h2>
@@ -68,8 +68,45 @@
                 가장 높은 챔피언 숙련도 : {{championPoints}}
                 <p>
                 </div>
-            
                 
+                {% comment %} <div class="highest">
+                {% for i in match_info %}
+                    {{i.lane}}
+                    {{i.role}}
+                    <p> {% endcomment %}
+                {% comment %} <p>
+                    {{match_info[i].champion}}
+                <p>
+                    {{match_info[i]}.role}} {% endcomment %}
+                {% comment %} {% endfor %} {% endcomment %}
+                <p>
+             
+                {% for match in match_total %}
+                    {{match.lane}}
+                    <p>
+                    {{match.role}}
+                    <div class="team_box">
+                        <div class="ally_box">
+                        아군
+                        <br>
+                        {% for ID in match.ally_ID %}
+                            {{ID}}
+                            <p>             
+                        {% endfor %}
+                        </div>
+                        <div class="enemy_box">
+                        적군
+                        <br>
+                        {% for ID in match.enemy_ID %}
+                            {{ID}}
+                            <p>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    다른 매치
+                    <p>
+                {% endfor%}
+                {{other_info}}
             </ul>
         </div>
         {% else %}

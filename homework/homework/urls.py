@@ -32,4 +32,6 @@ urlpatterns = [
     path('change_password/<int:myuser_pk>/', views.reset_password, name="change_password"),
     path('search/', views.find_naver, name = "find"),
     path('lol_find/', views.lol_find, name = "lol_find"),
+    path('todo/', views.todo, name = 'todo'),
+    path('todo_delete/<int:todo_pk>', views.todo_delete, name = 'todo_delete'),
 ]

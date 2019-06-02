@@ -1,6 +1,14 @@
 from django import forms
-from .models import Post, Comment, MyUser, Find
+from .models import Post, Comment, MyUser, Find, toDolist
 from django.contrib.auth.models import User
+
+class toDolistForm(forms.ModelForm):
+    class Meta:
+        model = toDolist
+        fields = ('text',)
+        widgets = {
+            'text' : forms.TextInput(attrs={'id': 'input', 'rows' : 1, 'placeholder' : '오늘할일'}),
+        }
 
 class searchForm(forms.ModelForm):
     class Meta:
