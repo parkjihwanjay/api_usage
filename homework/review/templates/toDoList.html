@@ -8,18 +8,19 @@
           <i id="delete_all" class="far fa-trash-alt icon"></i>
         </span>
       </div>
-      <form method="POST" enctype='multipart/form-data'>
+      <input type="text" id="input" name="{{csrf_token}}"/>
+      {% comment %} <form method="POST" enctype='multipart/form-data'>
         {% csrf_token %}
         {{form.text}}
-      </form>
+      </form> {% endcomment %}
 
       <div class="list">
       {% for todo in todos %}
       
-        <div>
+        <div name = "{{todo.id}}">
           - {{todo.text}}
           <span>
-            <a href="{% url 'todo_delete' todo.pk %}"><i class="far fa-trash-alt icon"></i></a>
+            <i class="far fa-trash-alt icon"></i>
           </span>
         </div>
       
@@ -44,6 +45,29 @@
   
     <script>
       // + 버튼 클릭 시, input fade 토글
+
+
+        $("#input").keydown(function(key){
+          if(key.keyCode === 13){
+            let text = $("input").val()
+            let csrf = $("input").attr('name')
+            console.log(csrf)
+            let ht = `<div>-${text}<span>
+            <i class="far fa-trash-alt icon"></i>
+          </span></div>`
+            $(".list").append(ht)
+            input.value=''
+            $.ajax({
+              type : "POST",
+              url : "{% url 'todo' %}",
+              data : {'text': text},
+              success :  function(response){
+               
+              }
+            })
+          }
+        })
+        
         $('#plus').click(function(){
           $("#input").fadeToggle();
            
@@ -51,11 +75,8 @@
   
         $('#plus').click(function(){
            $("#input").on();
-        })
-  
-        $(".list").on('click', 'div span', function(){
-          $(this).parent().fadeOut(500);
-        })
+        })  
+        
 
         function toggle(){
            $(this).toggleClass("complete");
@@ -63,28 +84,57 @@
   
         $(".list").on('click', 'div', toggle)
 
-        $("#delete_all").click(function(){          //아직 model에는 영향이 안감! -> 조치 필요
+        $(".list").on('click', 'div span', function(){
+            let pk = $(this).parent().attr('name')
+            console.log(pk)
+            $.ajax({
+              type : "POST",
+              url : "{% url 'todo_delete'%}",
+              data : {'pk': pk},
+              success :  function(response){
+               
+              }
+            })
+            $(this).parent().fadeOut(500)
+        })
+
+        $("#delete_all").click(function(){
+          let pks = new Array()
+          $('.complete').each(function(i){
+            pk = $(this).attr('name')
+            $.ajax({
+              type : "POST",
+              url : "{% url 'todo_delete' %}",
+              data : {'pk': pk},
+              success :  function(response){        
+              }
+            })
+          })          
           $('.complete').fadeOut(500);
         })
         
-        $("#input").setAttribute('method', 'Post')
-
-        $("#input").keydown(function(key){
-          if(key.keyCode === 13){
-            let text = $("input").val()
-            let ht = `<div>-${text}<span>
-            <i class="far fa-trash-alt icon"></i>
-          </span></div>`
-            $(".list").append(ht)
-            input.value=''
-            window.location.href = ''
-          }
-        })
-  
-  
         
+  
+        {% comment %} // let xmlhttp;
 
-        
+        // if(window.XMLHttpRequest)
+        //     xmlhttp = new XMLHttpRequest()
+        // else
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+
+
+        // $(".list").on('click', 'div span', function(){
+        //   $(this).parent().fadeOut(500);
+        //   $.ajax({
+        //         type : "POST",
+        //         url : "{% url 'todo_delete' $(this).pk %}",
+        //         data: {'csrfmiddlewaretoken': '{{ csrf_token }}'},
+        //         success : function(data){
+        //             console.log('성공')
+        //         }
+        //     })
+        // })
+
         
       // trash icon 클릭 시, 500ms 간 fadeOut 후 사라짐
   
@@ -96,7 +146,7 @@
   
   
       // 상단의 trash 버튼 클릭 시, 완료된 리스트 모두 삭제
-  
+   {% endcomment %}
       
     </script>
 {% endblock %}

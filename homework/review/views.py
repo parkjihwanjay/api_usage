@@ -13,10 +13,10 @@ import requests,xmltodict, json
 from bs4 import BeautifulSoup
 from django.core.mail import EmailMessage
 from review.api.api_key import *
-
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
-
+@csrf_exempt   
 def todo(request):
     todos = toDolist.objects.all()
     
@@ -24,14 +24,15 @@ def todo(request):
         form = toDolistForm(request.POST)
         todo = form.save(commit = False)
         todo.save()
-        # return render(request, 'toDoList.html', {'todos' : todos, 'form' : form})
         return redirect('todo')
     else:
-        form = toDolistForm()
+        form = toDolistForm() 
         return render(request, 'toDoList.html', {'todos' : todos, 'form' : form})
-    
-def todo_delete(request, todo_pk):
-    todo = toDolist.objects.get(pk=todo_pk)
+
+@csrf_exempt    
+def todo_delete(request):
+    pk = request.POST.get('pk', None)
+    todo = toDolist.objects.get(pk=pk)
     todo.delete()
     return redirect('todo')
 
